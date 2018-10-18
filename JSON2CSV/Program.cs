@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Web.Script;
+using System.Web.Script.Serialization;
 
 namespace JSON2CSV
 {
@@ -13,8 +15,10 @@ namespace JSON2CSV
     {
         static void Main(string[] args)
         {
-            JObject o1 = JObject.Parse(File.ReadAllText(@"c:\users\caljf\downloads\coinAPIData-20180218-0133.json"));
-
+            string JsonString = File.ReadAllText(@"c:\users\caljf\downloads\JSON2CSV2.txt");
+            var example1Model = new JavaScriptSerializer();
+            example1Model.MaxJsonLength = Int32.MaxValue;
+            example1Model.Deserialize<MainObject>(JsonString);
             // read JSON directly from a file
             //using (StreamReader file = File.OpenText(@"c:\videogames.json"))
             //using (JsonTextReader reader = new JsonTextReader(file))
@@ -22,14 +26,13 @@ namespace JSON2CSV
             //    JObject o2 = (JObject)JToken.ReadFrom(reader);
             //}
             int i = 0;
-            foreach (JProperty obj in o1.Children())
+            MainObject MO = (MainObject)example1Model;
+            foreach (Outer obj in 
             {
 
-                string nameProperty = i.ToString();
-
-                JProperty obj1 = (JProperty)obj[nameProperty];
+              
                
-                Console.WriteLine(obj1["symbolID"].Values());
+                Console.WriteLine(obj.recordValue.symbolID);
                 i++;
             }
 
