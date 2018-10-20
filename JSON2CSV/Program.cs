@@ -17,14 +17,10 @@ namespace JSON2CSV
         {
             string JsonString = File.ReadAllText(@"c:\users\caljf\downloads\JSON2CSV2.txt");
             var example1Model = new JavaScriptSerializer();
-            example1Model.MaxJsonLength = Int32.MaxValue;
-            example1Model.Deserialize<MainObject>(JsonString);
-            // read JSON directly from a file
-            //using (StreamReader file = File.OpenText(@"c:\videogames.json"))
-            //using (JsonTextReader reader = new JsonTextReader(file))
-            //{
-            //    JObject o2 = (JObject)JToken.ReadFrom(reader);
-            //}
+            Outer MO = new Outer();
+            MO.Inner = example1Model.Deserialize<Dictionary<string,Record>>(JsonString);
+       
+
             int i = 0;
             MainObject MO = (MainObject)example1Model;
             foreach (Outer obj in 
