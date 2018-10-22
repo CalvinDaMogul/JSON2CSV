@@ -21,19 +21,16 @@ namespace JSON2CSV
             MO.Inner = example1Model.Deserialize<Dictionary<string,Record>>(JsonString);
        
 
-            int i = 0;
-            MainObject MO = (MainObject)example1Model;
-            foreach (Outer obj in 
-            {
+            Console.WriteLine(MO.Inner.Count());
 
-              
-               
-                Console.WriteLine(obj.recordValue.symbolID);
-                i++;
-            }
+            foreach (KeyValuePair<string,Record> obj in MO.Inner) 
+                {
 
-
+                Record inner = obj.Value;
+                Console.WriteLine("Symbol: " + inner["symbolID"]);
+                }
             
+             
             Console.ReadKey();
         }
     }
