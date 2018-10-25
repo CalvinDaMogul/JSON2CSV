@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 
-public class Record
-{
-    public float askSize { get; set; }
+public class Record: Dictionary<string,object>
+{/*
+    public string symbolID { get; set; }
     public float askPrice { get; set; }
+    public float askSize { get; set; }
     public float bidPrice { get; set; }
     public float bidSize { get; set; }
     public float lastTradePrice { get; set; }
-    public string symbolID { get; set; }
     public float lastTradeSize { get; set; }
     public string lastTradeSide { get; set; }
     public string priceNotZero { get; set; }
@@ -22,7 +23,7 @@ public class Record
     public string assetQuoteName { get; set; }
     public int assetQuoteType { get; set; }
     public string assetQuoteAligned { get; set; }
-
+    */
     public Record()
 	{
 	}

@@ -5,7 +5,7 @@ namespace JSON2CSV {
 
     public class MainObject
 {
-    public List<Outer> MyList { get; set; }
+    public Dictionary<string,Record> MyList { get; set; }
 
 	public MainObject()
 	{

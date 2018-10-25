@@ -17,17 +17,34 @@ namespace JSON2CSV
         {
             string JsonString = File.ReadAllText(@"c:\users\caljf\downloads\JSON2CSV2.txt");
             var example1Model = new JavaScriptSerializer();
-            Outer MO = new Outer();
-            MO.Inner = example1Model.Deserialize<Dictionary<string,Record>>(JsonString);
+            Dictionary<string,Record> MO = new Dictionary<string,Record>();
+            MO = example1Model.Deserialize<Dictionary<string,Record>>(JsonString);
        
 
-            Console.WriteLine(MO.Inner.Count());
+            Console.WriteLine(MO.Count());
 
-            foreach (KeyValuePair<string,Record> obj in MO.Inner) 
+            foreach (KeyValuePair<string,Record> obj in MO) 
                 {
+                     if(obj.Key=="0") {
+                        foreach (KeyValuePair<string,object> i in obj.Value) {
+                            Console.Write(i.Key);
+                          if(i.Key != "assetQuoteAligned") Console.Write(",");
+                        }
+                            Console.WriteLine();
+                    }
 
-                Record inner = obj.Value;
-                Console.WriteLine("Symbol: " + inner["symbolID"]);
+                   foreach (KeyValuePair<string,object> i in obj.Value) {
+                    Console.Write(i.Value +",");
+                    }
+
+                Console.WriteLine();
+
+                /*Record inner = obj.Value;
+                Console.Write(inner.symbolID);
+                Console.Write("," +inner.askPrice);
+                Console.Write("," +inner.askSize);
+                Console.WriteLine("," +inner.bidPrice);
+                */
                 }
             
              
